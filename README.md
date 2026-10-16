@@ -52,6 +52,8 @@ Every number here came from a real test with real terminal output. Nothing was s
 prod-sim        control-plane   192.168.49.2
 prod-sim-m02    worker          192.168.49.3
 prod-sim-m03    worker          192.168.49.4
+
+![Cluster nodes all Ready](docs/evidence/01-cluster-nodes.png)
 ```
 
 [SCREENSHOT: docs/evidence/01-cluster-nodes.png]
