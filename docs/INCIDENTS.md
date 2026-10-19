@@ -136,3 +136,15 @@ kubectl top pods -n microservices
 
 ### Prevention
 Enable metrics-server during cluster setup before any HPA testing.
+
+## October 2026 rebuild: additional incidents
+
+| Incident | Root cause | Resolution | Verified |
+|---|---|---|---|
+| Workers could not join the cluster | `net.bridge.bridge-nf-call-iptables=1` sent container-to-container traffic through the host firewall, which dropped it | Set it to 0 | Container could reach the API server; 3 nodes Ready |
+| Pods in ImagePullBackOff | Legacy iptables `FORWARD` policy was DROP, blocking outbound traffic from nodes | Set FORWARD to ACCEPT and added MASQUERADE for 192.168.49.0/24 | Nodes reached Docker Hub and registry.k8s.io |
+| Control plane never became Ready | Latest minikube (v1.39) defaults to a newer containerd | Pinned minikube v1.34.0 with the Docker runtime | Control plane Ready |
+| API server timeouts during install | Installing the full stack at once on 8GB / 2 cores; swap file not supported on this filesystem | Moved to a 16GB machine | Full stack stable |
+| Disk at 92% | Manually loaded images were left on the host | Pruned host images | Disk back under 90% |
+| HPA stuck at 8 replicas | Memory above 70% target at default request | Raised memory request to 128Mi | Scaled back to 2 on its own |
+| Vault DB engine "no such host" | No Service existed for postgres-db | Added the Service | Dynamic credentials returned |

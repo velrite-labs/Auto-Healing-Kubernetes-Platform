@@ -9,6 +9,8 @@ A production-grade Kubernetes platform built around failure as a first-class con
 
 ---
 
+> **Latest verified run (Oct 2026):** see [docs/VERIFIED_RUN.md](docs/VERIFIED_RUN.md) for re-measured results and corrections.
+
 ## Why This Exists
 
 Most Kubernetes tutorials stop at "it deployed successfully."
